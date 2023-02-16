@@ -1,0 +1,11 @@
+filter: "evt.Parsed.program == 'docker-mailserver'"
+debug: false
+name: aritas1/docker-mailserver
+description: "Splitting the combined mailserver/docker-mailserver logs for parsing"
+pattern_syntax:
+  MAILSERVER_PROGRAM: '[A-Za-z0-9./]+'
+  MAILSERVER_PROGRAM_PID: '(\[[0-9]+\])?'
+  MAILSERVER_HOSTNAME: '[a-zA-Z0-9._-]+'
+grok:
+  pattern: "^%{DATA:timestamp} %{MAILSERVER_HOSTNAME:hostname} %{MAILSERVER_PROGRAM:program}%{MAILSERVER_PROGRAM_PID:program_pid}: %{DATA:message}$"
+  apply_on: message

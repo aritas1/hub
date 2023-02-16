@@ -1,0 +1,4 @@
+Feb 15 14:45:45 server.example.com docker-mailserver: Feb 15 14:45:44 mx.example.com dovecot: pop3-login: Login: user=<mail@example.com>, method=PLAIN, rip=132.132.132.132, lip=10.52.0.2, mpid=19427, TLS, session=<0PuUIr70XtF0y/r7>
+Feb 15 15:58:59 server.example.com docker-mailserver: Feb 15 15:58:52 mx.example.com postfix/submission/smtpd[32028]: lost connection after EHLO from unknown[132.132.132.132]
+Feb 15 20:25:37 server.example.com docker-mailserver: Feb 15 20:25:36 mx.example.com postfix/smtpd[14047]: NOQUEUE: reject: RCPT from unknown[132.132.132.132]: 450 4.7.25 Client host rejected: cannot find your hostname, [132.132.132.132]; from=<> to=<info@example.com> proto=ESMTP helo=<spam.com>
+Feb 16 12:54:56 server.example.com docker-mailserver: Feb 16 12:54:56 mx.example.com postfix/postscreen[164417]: PREGREET 15 after 0.02 from [132.132.132.132]:65503: EHLO g1oKUd5R

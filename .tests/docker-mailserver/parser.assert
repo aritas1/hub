@@ -1,0 +1,50 @@
+len(results["s00-raw"]["crowdsecurity/syslog-logs"]) == 4
+
+len(results["s01-parse"]["aritas1/docker-mailserver"]) == 4
+results["s01-parse"]["aritas1/docker-mailserver"][0].Success == true
+results["s01-parse"]["aritas1/docker-mailserver"][1].Success == true
+results["s01-parse"]["aritas1/docker-mailserver"][2].Success == true
+results["s01-parse"]["aritas1/docker-mailserver"][3].Success == true
+
+results["s01-parse"]["aritas1/docker-mailserver"][0].Evt.Parsed["logsource"] == "syslog"
+results["s01-parse"]["aritas1/docker-mailserver"][0].Evt.Parsed["program"] == "dovecot"
+results["s01-parse"]["aritas1/docker-mailserver"][0].Evt.Parsed["timestamp"] == "Feb 15 14:45:44"
+results["s01-parse"]["aritas1/docker-mailserver"][0].Evt.Parsed["hostname"] == "mx.example.com"
+results["s01-parse"]["aritas1/docker-mailserver"][0].Evt.Parsed["message"] == "pop3-login: Login: user=<mail@example.com>, method=PLAIN, rip=132.132.132.132, lip=10.52.0.2, mpid=19427, TLS, session=<0PuUIr70XtF0y/r7>"
+results["s01-parse"]["aritas1/docker-mailserver"][0].Evt.Meta["machine"] == "server.example.com"
+
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Parsed["program"] == "postfix/submission/smtpd"
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Parsed["timestamp"] == "Feb 15 15:58:52"
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Parsed["logsource"] == "syslog"
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Parsed["message"] == "lost connection after EHLO from unknown[132.132.132.132]"
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Parsed["program_pid"] == "[32028]"
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Parsed["hostname"] == "mx.example.com"
+results["s01-parse"]["aritas1/docker-mailserver"][1].Evt.Meta["machine"] == "server.example.com"
+
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Parsed["program"] == "postfix/smtpd"
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Parsed["hostname"] == "mx.example.com"
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Parsed["program_pid"] == "[14047]"
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Parsed["timestamp"] == "Feb 15 20:25:36"
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Parsed["logsource"] == "syslog"
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Parsed["message"] == "NOQUEUE: reject: RCPT from unknown[132.132.132.132]: 450 4.7.25 Client host rejected: cannot find your hostname, [132.132.132.132]; from=<> to=<info@example.com> proto=ESMTP helo=<spam.com>"
+results["s01-parse"]["aritas1/docker-mailserver"][2].Evt.Meta["machine"] == "server.example.com"
+
+
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Parsed["program"] == "postfix/postscreen"
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Parsed["program_pid"] == "[164417]"
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Parsed["timestamp"] == "Feb 16 12:54:56"
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Parsed["hostname"] == "mx.example.com"
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Parsed["logsource"] == "syslog"
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Parsed["message"] == "PREGREET 15 after 0.02 from [132.132.132.132]:65503: EHLO g1oKUd5R"
+results["s01-parse"]["aritas1/docker-mailserver"][3].Evt.Meta["machine"] == "server.example.com"
+
+
+len(results["s01-parse"]["crowdsecurity/dovecot-logs"]) == 4
+results["s01-parse"]["crowdsecurity/dovecot-logs"][0].Success == true
+
+len(results["s01-parse"]["crowdsecurity/postfix-logs"]) == 3
+results["s01-parse"]["crowdsecurity/postfix-logs"][0].Success == true
+results["s01-parse"]["crowdsecurity/postfix-logs"][1].Success == true
+
+len(results["s01-parse"]["crowdsecurity/postscreen-logs"]) == 1
+results["s01-parse"]["crowdsecurity/postscreen-logs"][0].Success == true
